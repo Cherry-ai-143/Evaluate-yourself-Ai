@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from app.api.v1.endpoints import users, auth, assessments, questions, assessment_attempts, student_answers, results, courses, chapters, lessons, contents   
+from app.api.v1.endpoints import users, auth, assessments, questions, assessment_attempts, student_answers, results, courses, chapters, lessons, contents, uploaded_files   
 
 api_router = APIRouter()
 
@@ -79,4 +79,11 @@ api_router.include_router(
     contents.router,
     prefix="/contents",
     tags=["Contents"],
+)
+
+#register the router uploaded_files 
+api_router.include_router(
+    uploaded_files.router,
+    prefix="/uploaded-files",
+    tags=["Uploaded Files"],
 )

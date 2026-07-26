@@ -4,6 +4,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.database.base import Base
 from app.enums import UserRole
 from app.models.base import TimestampMixin
+from app.models.uploaded_file import UploadedFile
 
 
 # User model representing the users table
@@ -68,4 +69,10 @@ class User(TimestampMixin, Base):
         "Course",
         back_populates="teacher",
         cascade="all, delete-orphan",
+    )
+    
+    # Uploaded Files Relationship
+    uploaded_files: Mapped[list["UploadedFile"]] = relationship(
+        "UploadedFile",
+        back_populates="uploader",
     )

@@ -11,6 +11,8 @@ class Settings(BaseSettings):
     access_token_expire_minutes: int
 
     database_url: str
+    
+    GEMINI_API_KEY: str
 
     model_config = SettingsConfigDict(
         env_file=".env",

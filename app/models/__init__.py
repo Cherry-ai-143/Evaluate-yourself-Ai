@@ -6,3 +6,5 @@ from app.models.student_answer import StudentAnswer
 from app.models.course import Course
 from app.models.lesson import Lesson
 from app.models.content import Content
+from app.models.uploaded_file import UploadedFile
+from app.models.document_chunk import DocumentChunk

@@ -1,6 +1,7 @@
 from datetime import datetime
 from typing import TYPE_CHECKING
 from app.models.content import Content
+from app.models.uploaded_file import UploadedFile
 
 from sqlalchemy import (
     Boolean,
@@ -89,6 +90,13 @@ class Lesson(Base):
     # Contents Relationship
     contents: Mapped[list["Content"]] = relationship(
         "Content",
+        back_populates="lesson",
+        cascade="all, delete-orphan",
+    )
+    
+    # Uploaded Files Relationship
+    uploaded_files: Mapped[list["UploadedFile"]] = relationship(
+        "UploadedFile",
         back_populates="lesson",
         cascade="all, delete-orphan",
     )
