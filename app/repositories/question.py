@@ -27,6 +27,7 @@ class QuestionRepository:
             option_d=question_data.option_d,
             correct_option=question_data.correct_option,
             marks=question_data.marks,
+            order_number=question_data.order_number,
         )
 
         self.db.add(question)

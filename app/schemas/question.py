@@ -10,6 +10,7 @@ class QuestionCreate(BaseModel):
     option_d: str
     correct_option: str
     marks: int
+    order_number: int
 
 
 class QuestionResponse(BaseModel):
@@ -20,7 +21,9 @@ class QuestionResponse(BaseModel):
     option_b: str
     option_c: str
     option_d: str
+    correct_option: str
     marks: int
+    order_number: int
 
     model_config = ConfigDict(
         from_attributes=True
@@ -35,3 +38,4 @@ class QuestionUpdate(BaseModel):
     option_d: str | None = None
     correct_option: str | None = None
     marks: int | None = None
+    order_number: int | None = None

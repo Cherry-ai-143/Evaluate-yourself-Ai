@@ -12,7 +12,14 @@ from app.schemas.lesson import (
     LessonResponse,
 )
 
+from app.schemas.quiz_generation import (
+    QuizGenerationRequest,
+)
+
 from app.services.lesson import LessonService
+from app.services.assessment_generation_service import (
+    AssessmentGenerationService,
+)
 
 
 router = APIRouter(
@@ -21,7 +28,9 @@ router = APIRouter(
 )
 
 
+# ==========================================
 # Create Lesson
+# ==========================================
 @router.post(
     "/",
     response_model=LessonResponse,
@@ -40,7 +49,9 @@ def create_lesson(
     )
 
 
+# ==========================================
 # Get All Lessons
+# ==========================================
 @router.get(
     "/",
     response_model=list[LessonResponse],
@@ -53,7 +64,9 @@ def get_all_lessons(
     return service.get_all_lessons()
 
 
+# ==========================================
 # Get Lesson By ID
+# ==========================================
 @router.get(
     "/{lesson_id}",
     response_model=LessonResponse,
@@ -69,7 +82,9 @@ def get_lesson_by_id(
     )
 
 
+# ==========================================
 # Update Lesson
+# ==========================================
 @router.put(
     "/{lesson_id}",
     response_model=LessonResponse,
@@ -89,7 +104,9 @@ def update_lesson(
     )
 
 
+# ==========================================
 # Delete Lesson
+# ==========================================
 @router.delete(
     "/{lesson_id}",
 )
@@ -103,4 +120,24 @@ def delete_lesson(
     return service.delete_lesson(
         lesson_id,
         current_user,
+    )
+
+
+# ==========================================
+# Generate AI Quiz
+# ==========================================
+@router.post(
+    "/{lesson_id}/generate-quiz",
+)
+def generate_quiz(
+    lesson_id: int,
+    request: QuizGenerationRequest,
+    db: Session = Depends(get_db),
+):
+    service = AssessmentGenerationService(db)
+
+    return service.generate_quiz(
+        lesson_id=lesson_id,
+        difficulty=request.difficulty,
+        num_questions=request.num_questions,
     )

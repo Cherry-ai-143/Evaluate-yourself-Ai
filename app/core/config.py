@@ -13,6 +13,8 @@ class Settings(BaseSettings):
     database_url: str
     
     GEMINI_API_KEY: str
+    GEMINI_TEXT_MODEL: str = "gemini-3.6-flash"
+    GEMINI_EMBEDDING_MODEL: str = "gemini-embedding-001"
 
     model_config = SettingsConfigDict(
         env_file=".env",
