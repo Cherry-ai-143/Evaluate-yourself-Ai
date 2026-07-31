@@ -13,7 +13,7 @@ export function BrandLogo({
   return (
     <span className={cn('inline-flex items-center', className)}>
       <Image
-        src="/arivu-logo.png"
+        src="/logos/arivu-logo.png"
         alt="Arivu AI"
         width={200}
         height={200}

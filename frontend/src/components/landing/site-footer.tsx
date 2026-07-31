@@ -78,7 +78,7 @@ export function SiteFooter() {
           <div>
             <span className="inline-flex items-center rounded-2xl bg-white px-3 py-2">
               <Image
-                src="/arivu-logo.png"
+                src="/logos/arivu-logo.png"
                 alt="Arivu AI"
                 width={160}
                 height={160}

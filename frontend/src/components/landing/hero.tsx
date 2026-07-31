@@ -142,7 +142,7 @@ export function Hero() {
           >
             <div className="absolute inset-6 rounded-[2.5rem] bg-gradient-to-b from-primary/10 to-accent/5 blur-2xl" />
             <Image
-              src="/hero-ai-learning.png"
+              src="/images/hero-ai-learning.png"
               alt="A student learning with Arivu AI, surrounded by an AI knowledge graph and glowing book"
               width={720}
               height={720}

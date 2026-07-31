@@ -67,7 +67,7 @@ export function Solutions() {
           <div className="relative">
             <div className="relative overflow-hidden rounded-[2rem] border border-border bg-gradient-to-b from-secondary to-card p-6 shadow-[0_30px_80px_-40px_rgba(30,58,138,0.4)]">
               <Image
-                src="/student-experience.png"
+                src="/images/student-experience.png"
                 alt="Student using Arivu AI on a laptop"
                 width={560}
                 height={480}
@@ -125,7 +125,7 @@ export function Solutions() {
           <div className="relative">
             <div className="relative overflow-hidden rounded-[2rem] border border-border bg-gradient-to-b from-secondary to-card p-6 shadow-[0_30px_80px_-40px_rgba(30,58,138,0.4)]">
               <Image
-                src="/teacher-experience.png"
+                src="/images/teacher-experience.png"
                 alt="Teacher using Arivu AI on a laptop"
                 width={560}
                 height={480}

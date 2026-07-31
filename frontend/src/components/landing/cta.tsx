@@ -42,7 +42,7 @@ export function Cta() {
 
               <div className="relative">
                 <Image
-                  src="/cta-education-3d.png"
+                  src="/images/cta-education-3d.png"
                   alt="3D graduation cap and book illustration"
                   width={520}
                   height={420}
