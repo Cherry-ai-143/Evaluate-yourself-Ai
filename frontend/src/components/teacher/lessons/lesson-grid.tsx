@@ -140,3 +140,5 @@ export function LessonGrid({ view, search, filter }: LessonGridProps) {
     </div>
   );
 }
+
+

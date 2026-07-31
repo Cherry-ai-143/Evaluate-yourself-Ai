@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { LessonHeader } from '@/components/teacher-dashboard/lessons/lesson-header';
-import { LessonFilters } from '@/components/teacher-dashboard/lessons/lesson-filters';
-import { LessonGrid } from '@/components/teacher-dashboard/lessons/lesson-grid';
-import { CreateLessonDialog } from '@/components/teacher-dashboard/lessons/create-lesson-dialog';
+import { LessonHeader } from '@/components/teacher/lessons/lesson-header';
+import { LessonFilters } from '@/components/teacher/lessons/lesson-filters';
+import { LessonGrid } from '@/components/teacher/lessons/lesson-grid';
+import { CreateLessonDialog } from '@/components/teacher/lessons/create-lesson-dialog';
 
 export default function LessonsPage() {
   const [search, setSearch] = useState('');
@@ -28,3 +28,5 @@ export default function LessonsPage() {
     </div>
   );
 }
+
+

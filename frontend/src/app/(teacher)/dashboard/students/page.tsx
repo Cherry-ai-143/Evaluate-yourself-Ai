@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { StudentsHeader } from '@/components/teacher-dashboard/students/students-header';
-import { StudentsFilters } from '@/components/teacher-dashboard/students/students-filters';
-import { StudentsList } from '@/components/teacher-dashboard/students/students-list';
+import { StudentsHeader } from '@/components/teacher/students/students-header';
+import { StudentsFilters } from '@/components/teacher/students/students-filters';
+import { StudentsList } from '@/components/teacher/students/students-list';
 
 export default function StudentsPage() {
   const [search, setSearch] = useState('');
@@ -25,3 +25,5 @@ export default function StudentsPage() {
     </div>
   );
 }
+
+

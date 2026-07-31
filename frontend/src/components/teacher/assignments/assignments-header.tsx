@@ -22,3 +22,5 @@ export function AssignmentsHeader({ onCreateClick }: AssignmentsHeaderProps) {
     </div>
   );
 }
+
+

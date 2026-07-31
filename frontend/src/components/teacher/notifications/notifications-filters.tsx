@@ -24,3 +24,5 @@ export function NotificationsFilters() {
     </div>
   );
 }
+
+

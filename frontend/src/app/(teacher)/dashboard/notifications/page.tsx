@@ -1,8 +1,8 @@
 'use client';
 
-import { NotificationsHeader } from '@/components/teacher-dashboard/notifications/notifications-header';
-import { NotificationsFilters } from '@/components/teacher-dashboard/notifications/notifications-filters';
-import { NotificationsList } from '@/components/teacher-dashboard/notifications/notifications-list';
+import { NotificationsHeader } from '@/components/teacher/notifications/notifications-header';
+import { NotificationsFilters } from '@/components/teacher/notifications/notifications-filters';
+import { NotificationsList } from '@/components/teacher/notifications/notifications-list';
 
 export default function NotificationsPage() {
   return (
@@ -13,3 +13,5 @@ export default function NotificationsPage() {
     </div>
   );
 }
+
+

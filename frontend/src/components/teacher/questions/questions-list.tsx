@@ -136,3 +136,5 @@ export function QuestionsList({ search, type }: QuestionsListProps) {
     </div>
   );
 }
+
+

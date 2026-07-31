@@ -1,11 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { CourseHeader } from '@/components/teacher-dashboard/courses/course-header'
-import { CourseFilters } from '@/components/teacher-dashboard/courses/course-filters'
-import { CourseGrid } from '@/components/teacher-dashboard/courses/course-grid'
-import { CourseTable } from '@/components/teacher-dashboard/courses/course-table'
-import { CreateCourseDialog } from '@/components/teacher-dashboard/courses/create-course-dialog'
+import { CourseHeader } from '@/components/teacher/courses/course-header'
+import { CourseFilters } from '@/components/teacher/courses/course-filters'
+import { CourseGrid } from '@/components/teacher/courses/course-grid'
+import { CourseTable } from '@/components/teacher/courses/course-table'
+import { CreateCourseDialog } from '@/components/teacher/courses/create-course-dialog'
 
 const mockCourses = [
   {
@@ -150,3 +150,5 @@ export default function MyCoursesPage() {
     </div>
   )
 }
+
+

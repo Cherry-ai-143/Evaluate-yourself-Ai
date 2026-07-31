@@ -162,3 +162,5 @@ export function CourseGrid({ courses }: CourseGridProps) {
     </div>
   )
 }
+
+

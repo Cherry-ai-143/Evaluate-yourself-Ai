@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { AssignmentsHeader } from '@/components/teacher-dashboard/assignments/assignments-header';
-import { AssignmentsFilters } from '@/components/teacher-dashboard/assignments/assignments-filters';
-import { AssignmentsList } from '@/components/teacher-dashboard/assignments/assignments-list';
-import { CreateAssignmentDialog } from '@/components/teacher-dashboard/assignments/create-assignment-dialog';
+import { AssignmentsHeader } from '@/components/teacher/assignments/assignments-header';
+import { AssignmentsFilters } from '@/components/teacher/assignments/assignments-filters';
+import { AssignmentsList } from '@/components/teacher/assignments/assignments-list';
+import { CreateAssignmentDialog } from '@/components/teacher/assignments/create-assignment-dialog';
 
 export default function QuizzesPage() {
   const [search, setSearch] = useState('');
@@ -28,3 +28,5 @@ export default function QuizzesPage() {
     </div>
   );
 }
+
+

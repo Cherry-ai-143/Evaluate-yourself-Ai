@@ -1,14 +1,14 @@
 'use client'
 
-import { TeacherTopStats } from '@/components/teacher-dashboard/teacher-top-stats'
-import { StudentPerformanceOverview } from '@/components/teacher-dashboard/student-performance-overview'
-import { CourseOverview } from '@/components/teacher-dashboard/course-overview'
-import { UpcomingActivities } from '@/components/teacher-dashboard/upcoming-activities'
-import { RecentCourses } from '@/components/teacher-dashboard/recent-courses'
-import { AIAssistantWidget } from '@/components/teacher-dashboard/ai-assistant-widget'
-import { RecentAssessments } from '@/components/teacher-dashboard/recent-assessments'
-import { TopPerformingStudents } from '@/components/teacher-dashboard/top-performing-students'
-import { TeachingInsights } from '@/components/teacher-dashboard/teaching-insights'
+import { TeacherTopStats } from '@/components/teacher/teacher-top-stats'
+import { StudentPerformanceOverview } from '@/components/teacher/student-performance-overview'
+import { CourseOverview } from '@/components/teacher/course-overview'
+import { UpcomingActivities } from '@/components/teacher/upcoming-activities'
+import { RecentCourses } from '@/components/teacher/recent-courses'
+import { AIAssistantWidget } from '@/components/teacher/ai-assistant-widget'
+import { RecentAssessments } from '@/components/teacher/recent-assessments'
+import { TopPerformingStudents } from '@/components/teacher/top-performing-students'
+import { TeachingInsights } from '@/components/teacher/teaching-insights'
 
 export default function TeacherDashboard() {
   return (
@@ -52,3 +52,5 @@ export default function TeacherDashboard() {
     </div>
   )
 }
+
+

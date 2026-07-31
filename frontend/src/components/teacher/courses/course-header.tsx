@@ -24,3 +24,5 @@ export function CourseHeader({ onCreateClick, coursesCount }: CourseHeaderProps)
     </div>
   )
 }
+
+

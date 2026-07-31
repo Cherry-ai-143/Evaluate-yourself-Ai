@@ -1,10 +1,10 @@
 'use client';
 
-import { AnalyticsHeader } from '@/components/teacher-dashboard/analytics/analytics-header';
-import { AnalyticsStats } from '@/components/teacher-dashboard/analytics/analytics-stats';
-import { CoursePerformanceChart } from '@/components/teacher-dashboard/analytics/course-performance-chart';
-import { StudentEngagementChart } from '@/components/teacher-dashboard/analytics/student-engagement-chart';
-import { TimeSeriesChart } from '@/components/teacher-dashboard/analytics/time-series-chart';
+import { AnalyticsHeader } from '@/components/teacher/analytics/analytics-header';
+import { AnalyticsStats } from '@/components/teacher/analytics/analytics-stats';
+import { CoursePerformanceChart } from '@/components/teacher/analytics/course-performance-chart';
+import { StudentEngagementChart } from '@/components/teacher/analytics/student-engagement-chart';
+import { TimeSeriesChart } from '@/components/teacher/analytics/time-series-chart';
 
 export default function PerformancePage() {
   return (
@@ -24,3 +24,5 @@ export default function PerformancePage() {
     </div>
   );
 }
+
+

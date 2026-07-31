@@ -146,3 +146,5 @@ export function CourseTable({ courses }: CourseTableProps) {
     </div>
   )
 }
+
+

@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { QuestionsHeader } from '@/components/teacher-dashboard/questions/questions-header';
-import { QuestionsFilters } from '@/components/teacher-dashboard/questions/questions-filters';
-import { QuestionsList } from '@/components/teacher-dashboard/questions/questions-list';
-import { CreateQuestionDialog } from '@/components/teacher-dashboard/questions/create-question-dialog';
+import { QuestionsHeader } from '@/components/teacher/questions/questions-header';
+import { QuestionsFilters } from '@/components/teacher/questions/questions-filters';
+import { QuestionsList } from '@/components/teacher/questions/questions-list';
+import { CreateQuestionDialog } from '@/components/teacher/questions/create-question-dialog';
 
 export default function QuestionsPage() {
   const [search, setSearch] = useState('');
@@ -25,3 +25,5 @@ export default function QuestionsPage() {
     </div>
   );
 }
+
+

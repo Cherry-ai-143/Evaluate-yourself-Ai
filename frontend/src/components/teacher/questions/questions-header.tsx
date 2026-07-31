@@ -22,3 +22,5 @@ export function QuestionsHeader({ onCreateClick }: QuestionsHeaderProps) {
     </div>
   );
 }
+
+

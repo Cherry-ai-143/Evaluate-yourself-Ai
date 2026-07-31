@@ -34,3 +34,5 @@ export function SettingsNav({ activeTab, onTabChange }: SettingsNavProps) {
     </div>
   );
 }
+
+

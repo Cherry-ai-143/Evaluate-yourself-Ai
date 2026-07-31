@@ -1,7 +1,7 @@
 'use client'
 
-import { TeacherSidebar } from '@/components/teacher-dashboard/teacher-sidebar'
-import { TeacherTopNav } from '@/components/teacher-dashboard/teacher-top-nav'
+import { TeacherSidebar } from '@/components/teacher/teacher-sidebar'
+import { TeacherTopNav } from '@/components/teacher/teacher-top-nav'
 
 export default function TeacherDashboardLayout({
   children,
@@ -20,3 +20,5 @@ export default function TeacherDashboardLayout({
     </div>
   )
 }
+
+

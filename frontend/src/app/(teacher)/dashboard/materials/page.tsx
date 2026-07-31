@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { MaterialsHeader } from '@/components/teacher-dashboard/materials/materials-header';
-import { MaterialsFilters } from '@/components/teacher-dashboard/materials/materials-filters';
-import { MaterialsList } from '@/components/teacher-dashboard/materials/materials-list';
-import { CreateMaterialDialog } from '@/components/teacher-dashboard/materials/create-material-dialog';
+import { MaterialsHeader } from '@/components/teacher/materials/materials-header';
+import { MaterialsFilters } from '@/components/teacher/materials/materials-filters';
+import { MaterialsList } from '@/components/teacher/materials/materials-list';
+import { CreateMaterialDialog } from '@/components/teacher/materials/create-material-dialog';
 
 export default function MaterialsPage() {
   const [search, setSearch] = useState('');
@@ -25,3 +25,5 @@ export default function MaterialsPage() {
     </div>
   );
 }
+
+

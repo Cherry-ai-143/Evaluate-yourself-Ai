@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { SettingsNav } from '@/components/teacher-dashboard/settings/settings-nav';
-import { AccountSettings } from '@/components/teacher-dashboard/settings/account-settings';
-import { PrivacySettings } from '@/components/teacher-dashboard/settings/privacy-settings';
-import { NotificationSettings } from '@/components/teacher-dashboard/settings/notification-settings';
+import { SettingsNav } from '@/components/teacher/settings/settings-nav';
+import { AccountSettings } from '@/components/teacher/settings/account-settings';
+import { PrivacySettings } from '@/components/teacher/settings/privacy-settings';
+import { NotificationSettings } from '@/components/teacher/settings/notification-settings';
 
 export default function SettingsPage() {
   const [activeTab, setActiveTab] = useState('account');
@@ -29,3 +29,5 @@ export default function SettingsPage() {
     </div>
   );
 }
+
+

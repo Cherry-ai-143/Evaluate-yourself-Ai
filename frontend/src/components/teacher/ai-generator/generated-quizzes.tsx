@@ -98,3 +98,5 @@ export function GeneratedQuizzes() {
     </div>
   );
 }
+
+

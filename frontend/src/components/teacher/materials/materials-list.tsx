@@ -110,3 +110,5 @@ export function MaterialsList({ search, type }: MaterialsListProps) {
     </div>
   );
 }
+
+

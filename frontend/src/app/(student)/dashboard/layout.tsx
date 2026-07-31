@@ -1,7 +1,7 @@
 'use client'
 
-import { Sidebar } from '@/components/dashboard/sidebar'
-import { TopNav } from '@/components/dashboard/top-nav'
+import { Sidebar } from '@/components/student/sidebar'
+import { TopNav } from '@/components/student/top-nav'
 
 export default function DashboardLayout({
   children,
@@ -20,3 +20,5 @@ export default function DashboardLayout({
     </div>
   )
 }
+
+

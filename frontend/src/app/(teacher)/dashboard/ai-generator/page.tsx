@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { AIGeneratorHeader } from '@/components/teacher-dashboard/ai-generator/ai-generator-header';
-import { GeneratorForm } from '@/components/teacher-dashboard/ai-generator/generator-form';
-import { GeneratedQuizzes } from '@/components/teacher-dashboard/ai-generator/generated-quizzes';
+import { AIGeneratorHeader } from '@/components/teacher/ai-generator/ai-generator-header';
+import { GeneratorForm } from '@/components/teacher/ai-generator/generator-form';
+import { GeneratedQuizzes } from '@/components/teacher/ai-generator/generated-quizzes';
 
 export default function AIGeneratorPage() {
   const [generated, setGenerated] = useState(false);
@@ -25,3 +25,5 @@ export default function AIGeneratorPage() {
     </div>
   );
 }
+
+

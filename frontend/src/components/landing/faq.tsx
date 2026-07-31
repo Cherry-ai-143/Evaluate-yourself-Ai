@@ -76,3 +76,5 @@ export function Faq() {
     </section>
   )
 }
+
+

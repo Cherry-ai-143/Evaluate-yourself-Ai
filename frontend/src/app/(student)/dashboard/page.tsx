@@ -1,15 +1,15 @@
 'use client'
 
-import { TopStats } from '@/components/dashboard/top-stats'
-import { LearningProgress } from '@/components/dashboard/learning-progress'
-import { AIQuizGenerator } from '@/components/dashboard/ai-quiz-generator'
-import { Calendar } from '@/components/dashboard/calendar'
-import { ContinueLearning } from '@/components/dashboard/continue-learning'
-import { PerformanceOverview } from '@/components/dashboard/performance-overview'
-import { SubjectPerformance } from '@/components/dashboard/subject-performance'
-import { StudyStreak } from '@/components/dashboard/study-streak'
-import { UpcomingAssessments } from '@/components/dashboard/upcoming-assessments'
-import { AIRecommendation } from '@/components/dashboard/ai-recommendation'
+import { TopStats } from '@/components/student/top-stats'
+import { LearningProgress } from '@/components/student/learning-progress'
+import { AIQuizGenerator } from '@/components/student/ai-quiz-generator'
+import { Calendar } from '@/components/student/calendar'
+import { ContinueLearning } from '@/components/student/continue-learning'
+import { PerformanceOverview } from '@/components/student/performance-overview'
+import { SubjectPerformance } from '@/components/student/subject-performance'
+import { StudyStreak } from '@/components/student/study-streak'
+import { UpcomingAssessments } from '@/components/student/upcoming-assessments'
+import { AIRecommendation } from '@/components/student/ai-recommendation'
 
 export default function Dashboard() {
   return (
@@ -38,3 +38,5 @@ export default function Dashboard() {
     </div>
   )
 }
+
+

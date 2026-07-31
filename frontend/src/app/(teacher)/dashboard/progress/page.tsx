@@ -1,8 +1,8 @@
 'use client';
 
-import { ProgressHeader } from '@/components/teacher-dashboard/progress/progress-header';
-import { ProgressFilters } from '@/components/teacher-dashboard/progress/progress-filters';
-import { ProgressGrid } from '@/components/teacher-dashboard/progress/progress-grid';
+import { ProgressHeader } from '@/components/teacher/progress/progress-header';
+import { ProgressFilters } from '@/components/teacher/progress/progress-filters';
+import { ProgressGrid } from '@/components/teacher/progress/progress-grid';
 
 export default function ProgressPage() {
   return (
@@ -13,3 +13,5 @@ export default function ProgressPage() {
     </div>
   );
 }
+
+
