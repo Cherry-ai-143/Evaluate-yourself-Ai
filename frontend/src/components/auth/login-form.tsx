@@ -1,22 +1,42 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { motion } from 'motion/react'
 import { Eye, EyeOff, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+
+import { useAuth } from '@/hooks/useAuth'
+import { getApiErrorMessage } from '@/lib/api/errors'
 
 export function LoginForm() {
+  const router = useRouter()
+  const { login: loginWithAuth } = useAuth()
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
+
+  const isFormValid = useMemo(() => email.trim().length > 0 && password.trim().length > 0, [email, password])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (!isFormValid || isLoading) {
+      return
+    }
+
     setIsLoading(true)
-    // Simulate login process
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    setIsLoading(false)
+    setErrorMessage('')
+
+    try {
+      await loginWithAuth({ email, password })
+    } catch (error) {
+      setErrorMessage(getApiErrorMessage(error))
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -45,6 +65,11 @@ export function LoginForm() {
 
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-5">
+        {errorMessage ? (
+          <div className="rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+            {errorMessage}
+          </div>
+        ) : null}
         {/* Email */}
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
@@ -55,9 +80,15 @@ export function LoginForm() {
             type="email"
             placeholder="you@example.com"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value)
+              if (errorMessage) {
+                setErrorMessage('')
+              }
+            }}
             required
-            className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent"
+            disabled={isLoading}
+            className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-70"
           />
         </div>
 
@@ -72,14 +103,21 @@ export function LoginForm() {
               type={showPassword ? 'text' : 'password'}
               placeholder="••••••••"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value)
+                if (errorMessage) {
+                  setErrorMessage('')
+                }
+              }}
               required
-              className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent pr-12"
+              disabled={isLoading}
+              className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent pr-12 disabled:cursor-not-allowed disabled:opacity-70"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground"
+              disabled={isLoading}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground disabled:cursor-not-allowed disabled:opacity-70"
               aria-label={showPassword ? 'Hide password' : 'Show password'}
             >
               {showPassword ? <EyeOff className="size-5" /> : <Eye className="size-5" />}
@@ -92,7 +130,8 @@ export function LoginForm() {
           <label className="flex items-center gap-2 cursor-pointer">
             <input
               type="checkbox"
-              className="size-4 rounded border border-border cursor-pointer accent-primary"
+              disabled={isLoading}
+              className="size-4 rounded border border-border cursor-pointer accent-primary disabled:cursor-not-allowed"
             />
             <span className="text-sm text-muted-foreground">Remember me</span>
           </label>
@@ -107,7 +146,7 @@ export function LoginForm() {
         {/* Sign In Button */}
         <button
           type="submit"
-          disabled={isLoading}
+          disabled={isLoading || !isFormValid}
           className="w-full mt-6 group inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3.5 text-base font-semibold text-accent-foreground shadow-[0_8px_24px_-8px_rgba(249,115,22,0.6)] transition-all hover:brightness-105 disabled:opacity-70 disabled:cursor-not-allowed"
         >
           {isLoading ? (

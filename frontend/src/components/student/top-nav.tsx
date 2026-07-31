@@ -2,9 +2,18 @@
 
 import { Bell, Search, LogOut } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+
+import { useAuth } from '@/hooks/useAuth'
 
 export function TopNav() {
+  const router = useRouter()
+  const { logout } = useAuth()
+
+  const handleLogout = async () => {
+    await logout()
+    router.replace('/login')
+  }
   return (
     <nav className="border-b border-border bg-card sticky top-0 z-40 shadow-sm">
       <div className="mx-auto flex h-16 max-w-full items-center justify-between gap-4 px-6 lg:px-8">
@@ -49,13 +58,14 @@ export function TopNav() {
               height={40}
               className="size-10 rounded-lg"
             />
-            <Link
-              href="/"
+            <button
+              type="button"
+              onClick={handleLogout}
               className="ml-2 p-2 text-muted-foreground hover:bg-muted rounded-lg transition-colors"
               title="Logout"
             >
               <LogOut className="size-5" />
-            </Link>
+            </button>
           </div>
         </div>
       </div>

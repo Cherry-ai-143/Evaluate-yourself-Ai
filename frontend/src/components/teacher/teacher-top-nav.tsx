@@ -3,10 +3,20 @@
 import { Bell, Search, LogOut, ChevronDown } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
+import { useAuth } from '@/hooks/useAuth'
+
 export function TeacherTopNav() {
+  const router = useRouter()
+  const { logout } = useAuth()
   const [showDropdown, setShowDropdown] = useState(false)
+
+  const handleLogout = async () => {
+    await logout()
+    router.replace('/login')
+  }
 
   return (
     <nav className="border-b border-border bg-card sticky top-0 z-40 shadow-sm">
@@ -78,12 +88,13 @@ export function TeacherTopNav() {
                 >
                   Profile
                 </Link>
-                <Link
-                  href="/"
-                  className="block px-4 py-2 text-sm text-destructive hover:bg-destructive/10 transition-colors"
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="block w-full px-4 py-2 text-left text-sm text-destructive hover:bg-destructive/10 transition-colors"
                 >
                   Logout
-                </Link>
+                </button>
               </div>
             )}
           </div>

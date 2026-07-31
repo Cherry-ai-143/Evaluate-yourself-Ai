@@ -1,13 +1,18 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { motion } from 'motion/react'
 import { Eye, EyeOff, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+
+import { register } from '@/lib/api'
+import { getApiErrorMessage } from '@/lib/api/errors'
 
 type Role = 'student' | 'teacher'
 
 export function RegisterForm() {
+  const router = useRouter()
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -17,13 +22,47 @@ export function RegisterForm() {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [agreeTerms, setAgreeTerms] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
+
+  const isFormValid = useMemo(() => {
+    return (
+      fullName.trim().length > 0 &&
+      email.trim().length > 0 &&
+      password.trim().length >= 8 &&
+      confirmPassword.trim().length > 0 &&
+      password === confirmPassword &&
+      agreeTerms
+    )
+  }, [agreeTerms, confirmPassword, email, fullName, password])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (!isFormValid || isLoading) {
+      return
+    }
+
     setIsLoading(true)
-    // Simulate registration process
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    setIsLoading(false)
+    setErrorMessage('')
+    setSuccessMessage('')
+
+    try {
+      await register({
+        full_name: fullName.trim(),
+        email: email.trim(),
+        password,
+        role,
+      })
+
+      setSuccessMessage('Account created successfully.')
+      await new Promise((resolve) => setTimeout(resolve, 600))
+      router.push('/login')
+    } catch (error) {
+      setErrorMessage(getApiErrorMessage(error))
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -52,6 +91,16 @@ export function RegisterForm() {
 
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-5">
+        {errorMessage ? (
+          <div className="rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+            {errorMessage}
+          </div>
+        ) : null}
+        {successMessage ? (
+          <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-600">
+            {successMessage}
+          </div>
+        ) : null}
         {/* Role Selector */}
         <div>
           <label className="block text-sm font-medium text-foreground mb-3">
@@ -66,7 +115,8 @@ export function RegisterForm() {
                 key={option.value}
                 type="button"
                 onClick={() => setRole(option.value as Role)}
-                className={`px-4 py-3 rounded-xl font-medium transition-all ${
+                disabled={isLoading}
+                className={`px-4 py-3 rounded-xl font-medium transition-all disabled:cursor-not-allowed disabled:opacity-70 ${
                   role === option.value
                     ? 'bg-primary text-primary-foreground border border-primary'
                     : 'border border-border bg-card text-foreground hover:border-primary/50'
@@ -88,9 +138,15 @@ export function RegisterForm() {
             type="text"
             placeholder="John Doe"
             value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
+            onChange={(e) => {
+              setFullName(e.target.value)
+              if (errorMessage) {
+                setErrorMessage('')
+              }
+            }}
             required
-            className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent"
+            disabled={isLoading}
+            className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-70"
           />
         </div>
 
@@ -104,9 +160,15 @@ export function RegisterForm() {
             type="email"
             placeholder="you@example.com"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value)
+              if (errorMessage) {
+                setErrorMessage('')
+              }
+            }}
             required
-            className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent"
+            disabled={isLoading}
+            className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-70"
           />
         </div>
 
@@ -121,9 +183,15 @@ export function RegisterForm() {
               type={showPassword ? 'text' : 'password'}
               placeholder="••••••••"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value)
+                if (errorMessage) {
+                  setErrorMessage('')
+                }
+              }}
               required
-              className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent pr-12"
+              disabled={isLoading}
+              className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent pr-12 disabled:cursor-not-allowed disabled:opacity-70"
             />
             <button
               type="button"
@@ -147,9 +215,15 @@ export function RegisterForm() {
               type={showConfirmPassword ? 'text' : 'password'}
               placeholder="••••••••"
               value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              onChange={(e) => {
+                setConfirmPassword(e.target.value)
+                if (errorMessage) {
+                  setErrorMessage('')
+                }
+              }}
               required
-              className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent pr-12"
+              disabled={isLoading}
+              className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent pr-12 disabled:cursor-not-allowed disabled:opacity-70"
             />
             <button
               type="button"
@@ -169,7 +243,8 @@ export function RegisterForm() {
             checked={agreeTerms}
             onChange={(e) => setAgreeTerms(e.target.checked)}
             required
-            className="mt-1 size-4 rounded border border-border cursor-pointer accent-primary"
+            disabled={isLoading}
+            className="mt-1 size-4 rounded border border-border cursor-pointer accent-primary disabled:cursor-not-allowed"
           />
           <span className="text-sm text-muted-foreground">
             I agree to the{' '}
@@ -186,7 +261,7 @@ export function RegisterForm() {
         {/* Create Account Button */}
         <button
           type="submit"
-          disabled={isLoading || !agreeTerms}
+          disabled={isLoading || !isFormValid}
           className="w-full mt-6 group inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3.5 text-base font-semibold text-accent-foreground shadow-[0_8px_24px_-8px_rgba(249,115,22,0.6)] transition-all hover:brightness-105 disabled:opacity-70 disabled:cursor-not-allowed"
         >
           {isLoading ? (
